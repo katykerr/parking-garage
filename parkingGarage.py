@@ -1,90 +1,56 @@
 
-
-
 class parking_Garage():
 
-     def __init__(self):
-        self.Tickets = []
-        self.Parkingspace = 10
-        self.Currentticket = 0
+    def __init__(self, tickets, parkingSpaces):
+        self.tickets = tickets
+        self.parkingSpaces = parkingSpaces
+        self.currentTicket = {}
 
-# ATTRIBUTES:
+    def takeTicket(self):
+        #{key(string), bool\ is paid status}
+        self.currentTicket.update({"Paid": False})
+        # remove tickets and spaces from available in lists
+        self.tickets.pop(0)
+        self.parkingSpaces.pop(0)
+        print("Welcome to The Parking Garage")
+        print(input("To purchase a ticket for parking press any key."))
+        print("Happy Parking!")
+        print(input("Press any key when you're ready to leave."))
+        
 
-    class Ticket():
-    tickets = []
-
-    def __init__(self, paid, price, hours=""):
-        self.paid = paid
-        self.price = price
-        self.hours = hours
-
-    def paidTicket(self):
-        print("Thank you, have a nice day!")
-
-    def priceOfTicket(self):
-        print("Based on the hours you're staying, the price of your ticket costs " + self.price)
-
-    def hoursInGarage(self):
-        print("You have selected to stay " + self.hours + " in the parking garage.")
-
-
-class Parkingspace():
-    parking_spots = []
-
-    def __init__(self, remaining):
-        self.remaining = remaining
-
-    def remainingSpaces(self):
-        print("Thank you for entering the parking garage. There are " + self.remaining + " spots left.")
-        for remain in self.remaining:
-            print(remain)
-
-
-
-class Currentticket():
-    current_tickets = {
-        'name': 'confirmation of payment'
-    }
-
-    def __init__(self, name, confirmation_of_payment):
-        self.name = name
-        self.confirmation_of_payment = confirmation_of_payment
-        print(self.name + " this is your " + self.confirmation_of_payment + ".")
-
-# METHODS:
-
-    def TakeTickets():
-        if garage_prompts.lower == "park":
-            ticket_list.remove(-1)
-            parking_list.remove(-1)
-        else:
-            print("If you're not parking, please get out.")
-
-
-    def PayForParking():
-        input("Ready to leave? Enter your payment total now:")
-        if input:
-            input == dict[value == True]
-            print("Thanks for paying! You have 15 minutes to leave before you self destruct.")
-        else:
+    def payForParking(self):
+        userInput = int(input("Ready to leave? Enter your payment total now:"))
+        if userInput == (""):
             print("Please pay.")
 
-    def LeaveGarage():
-        if dict[value] == True:
-            print("Thank you, have a nice day!")
+        if userInput < 20000 and not None:
+            print('')
+            print("Thanks for parking with us!")
+            print(' ')
+            # call leave method after payment
+            self.leaveGarage()
 
-        else:
-            input("Ready to leave? Enter your payment total now:")
+    def leaveGarage(self):
+        # make tiket value as paid
+        self.currentTicket.update({"Paid": True})
+        # add tickets and space back to lists
+        self.tickets.insert(0, self.tickets[0]-1)
+        self.parkingSpaces.insert(0, self.parkingSpaces[0]-1)
+        print("You have 15 minutes to leave before you self destruct.")
+        
 
-        elif input:
-            input == dict[value == True]
-            ticket_list.append(+1)
-            parking_list.append(+1)
-            print("Thank you, have a nice day!")
+tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parkingSpaces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
-while True:
+pg = parking_Garage(tickets,parkingSpaces)
+run = True
 
-        garage_prompts = input("Welcome to the parking garage. What would you like to do: [Park], [Pay], or [Leave]?")
+while run:
+    pg.takeTicket()
+    pg.payForParking()
+    # end loop
+    break
 
-print(Parking_Garage())
+
+
